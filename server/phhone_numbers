@@ -1,0 +1,604 @@
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id=2;
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id=1;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id=2;
+select * from ota_hotel_mappings where ota_hotel_id = '28061073';
+select * from ota_hotel_mapping where ota_hotel_id = '28061073';
+\q
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id=1;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id=2;
+select * from process_execution_details;
+\q
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id =1;
+\q
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id =1;
+\q
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+\q
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id = 1;
+\q
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id = 1;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+\q
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id = 1;
+select * from process_execution_details;
+\q
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id = 1;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+\q
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id = 1;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+\q
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+select * from process_execution_details;
+\q
+select * from ota_hotel_mappings where cm_id = 5;
+update ota_hotel_mappings  set hotel_id = 95102, ota_hotel_id = '6107268' where id = 25549;
+select * from hotel_data limit 1;
+insert into hotel_data values(12123112,95102,132,now(),now(),'','false','','false','');
+update ota_hotel_mappings  set hotel_id = 95102, ota_hotel_id = '6107268' where id = 25549;
+\q
+select * from ota_attribute_details;
+update ota_attribute_details set country_id = 132;
+\q
+select count(*) from compset_otahotelprice;
+select count(*),created_at::timestamp::date as d from compset_otahotelprice group by d order by d desc limit 14;
+\q
+select * from django_cron_cronjoblog where code = 'scrap-city-compset-data' order by start_time desc;
+\q
+select * from ota_hotel_mappings where cm_id =3;
+\x
+select * from ota_hotel_mappings where cm_id =3;
+select * from ota_hotel_mappings where id = 25551;
+select * from ota_hotel_mappings where id = 25551;
+select * from ota_room_mappings where ota_hotel_mapping_id  where id = 25551;
+select * from ota_room_mappings where ota_hotel_mapping_id  = 25551;
+select * from ota_rate_mappings where ota_room_mapping_id = 100000;
+\q
+select * from hotel_data limit 1;
+select * from hotel_data where hotel_id = 15972;
+select * from ota_hotel_mappings where cm_id =3;
+\d ota_hotel_mappings
+insert into ota_hotel_mappings values (12131212,15972,'23053948',3,'active','','',now(),now(),3);
+insert into ota_room_mappings (id,ota_hotel_mapping_id,room_category_code,ota_room_code,max_occupancy,room_count,response,created_at,updated_at,status) values(12332,98766,25,3,3,1,' ',now(),now(),'active');
+insert into ota_hotel_mappings values (12131212,15972,'23053948',3,'active','','',now(),now(),3);
+\d ota_room_mappings
+insert into ota_room_mappings values (1212312,12131212,'1','221704264',3,1,'',now(),now(),'active');
+\d ota_rate_mappings;
+insert into ota_rate_mappings values(12312312,1212312,'default','298014112A','',now(),now(),'active','','','','')
+;
+\q
+update ota_hotel_mappings set status ='inactive' where cm_id =3 and id <> 12131212;
+select * from ota_hotel_mappings where cm_id = 3 and status = 'active';
+\q
+select * from process_execution_details;
+\q
+\d
+\d schedulers_extranetscrapcandidates;
+\d schedulers_websitescrapcandidates
+\q
+select * from process_execution_details;
+update ota_hotel_mappings set status ='inactive' where cm_id = 5;
+\q
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}';
+\q
+select * from schedulers_websitescrapcandidates where ota_id = 63;
+select * from schedulers_websitescrapcandidates;
+\d
+select * from prices_websiteidmapping where ota_id =63;
+select count(*) from prices_websiteidmapping where ota_id =63;
+select * from prices_websiteidmapping where ota_id =63 limit 1;
+\x
+select * from prices_websiteidmapping where ota_id =63 limit 1;
+select * from prices_websiteidmapping where ota_id =63 and scrping_candidate = 'true' limit 1;
+select * from prices_websiteidmapping where ota_id =63 and scrapping_candidate = 'true' limit 1;
+select * from prices_websiteidmapping where ota_id =63 and scrapping_candidate = 'false' limit 1;
+select count(*) from prices_websiteidmapping where ota_id =63 and scrapping_candidate = 'false' limit 1;
+\q
+select count(*) from prices_websiteidmapping where ota_id =63;
+select count(*),scrapping_candidate from prices_websiteidmapping where ota_id =63 group by scrapping_candidate;
+select * from prices_websiteidmapping where ota_id =5 limit 1;
+\x
+select * from prices_websiteidmapping where ota_id =5 limit 1;
+\q
+select count(*),scrapping_candidate from prices_extraneidmapping where ota_id =63 group by scrapping_candidate;
+select count(*),scrapping_candidate from prices_extranetidmapping where ota_id =63 group by scrapping_candidate;
+select * from prices_extranetidmapping where ota_id =63 limit 1;
+select * from prices_extranetidmapping where ota_id =5 limit 1;
+select * from prices_extranetidmapping where ota_id =3 limit 1;
+select * from schedulers_slackchannels;
+select count(*),scrapping_candidate from prices_websiteidmapping  group by scrapping_candidate;
+\q
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id = 1;
+\q
+select count(*) from prices_extranetidmapping where updated_at >=now()-interval'10 mins';
+select count(*) from prices_extranetidmapping where updated_at >=now()-interval'10 minutes';
+select count(*) from prices_extranetidmapping where updated_at <=now()-interval'10 minutes';
+select count(*),scrapping_candidate from prices_extranetidmapping group by scrapping_candidate;
+select count(*),scrapping_candidate from prices_extranetidmapping where country_code='IN' group by scrapping_candidate;
+select count(*) from prices_extranetidmapping where country_code='IN' group by ota_id;
+select count(*),ota_id from prices_extranetidmapping where country_code='IN' group by ota_id;
+select count(*),updated_at::timestamp::date as d from prices_extranetidmapping where country_code='IN' group by d;
+select count(*),updated_at::timestamp::date as d from prices_extranetidmapping where country_code='IN' group by d order by d desc;
+\q
+select count(*),updated_at::timestamp::date as d from prices_extranetidmapping where country_code='IN' group by d order by d desc;
+begin;
+update prices_extranetidmapping set scrapping_candidate = 't' where country_code='IN' and scrapping_candidate = 'f' and updated_at::timestamp::date='2020-08-28'
+rollback;
+begin;
+update prices_extranetidmapping set scrapping_candidate = 't' where country_code='IN' and scrapping_candidate = 'f' and updated_at::timestamp::date='2020-08-28';
+select count(*) from prices_extranetidmapping where scrapping_candidate = 't' and country_code = 'IN';
+rollback;
+\q
+\q
+\q
+\d promotion_sync_histories
+\q
+select * from django_cron_cronjoblog where code = 'extranet-scrap';
+select * from django_cron_cronjoblog where code = 'extranet-scrap' order by start_tim desc;
+select * from django_cron_cronjoblog where code = 'extranet-scrap' order by start_time desc;
+\q
+select * from django_cron_cronjoblog where code = 'scrap-city-compset-data' order by start_time desc;
+select * from django_cron_cronjoblog where start_time::timestamp::date = '2020-08-27' order by start_time desc;
+select count(*) from compset_otahoteldata;
+select count(*) from compset_otahotelprice;
+select count(*),created_at::timestamp::date as d from compset_otahotelprice group by d order by d desc limit 14;
+\q
+\d
+select count(*) from pricso_cache_table ;
+\q
+select * from django_cron_cronjoblog where code = 'create-scrap-tasks' order by start_time desc;
+\q
+\d
+select * from schedulers_extranetscrapcandidates;
+select * from schedulers_extranetscrapcandidates;
+\q
+\q
+select * from schedulers_extranetscrapcandidates;
+\q
+select * from django_cron_cronjoblog where code = 'extranet-scrap' order by start_time desc;
+select now();
+select now();
+select * from schedulers_extranetscrapcandidates;
+\q
+select * from django_cron_cronjoblog where code = 'extranet-scrap' order by start_time desc;
+select now()
+;
+select * from django_cron_cronjoblog where code = 'extranet-scrap' order by start_time desc;
+select * from schedulers_extranetscrapcandidates order by hotel_id,created_at desc;
+select * from django_cron_cronjoblog where code = 'extranet-scrap' order by start_time desc;
+select * from django_cron_cronjoblog where code = 'extranet-scrap' order by start_time desc;
+select * from django_cron_cronjoblog where code = 'extranet-scrap' order by start_time desc;
+\q
+select * from django_cron_cronjoblog where code = 'extranet-scrap' order by start_time desc;
+select * from schedulers_extranetscrapcandidates order by created_at desc,hotel_id desc;
+select * from schedulers_extranetscrapcandidates order by created_at desc,hotel_id;
+select * from schedulers_extranetscrapcandidates order by created_at desc,hotel_id asc;
+select * from schedulers_extranetscrapcandidates order by created_at desc,hotel_id asc;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+\q
+select * from django_cron_cronjoblog where code = 'extranet-report';
+select * from django_cron_cronjoblog where code = 'extranet-price-report';
+select * from django_cron_cronjoblog where code = 'extranet-price-report' order by start_time desc;
+select now();
+\q
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select count(*),status from schedulers_extranetscrapcandidates group by status;
+select * from django_cron_cronjoblog where code = 'extranet-scrap' order by start_time desc;
+\q
+select * from django_cron_cronjoblog where code = 'extranet-price-report' order by start_time desc;
+\q
+\q
+select * from ota_hotel_mappings where cm_id = 3 and status = 'active';
+insert into ota_hotel_mappings values(12312412,15972,'2892407',5,'active','Gerdwef','',now(),now(),5);
+insert into ota_room_mappings values(1231231,12312412,3,'289240703',3,1,'',now(),now(),'active');
+insert into ota_room_mappings values(1231232,12312412,3,'289240702',1,1,'',now(),now(),'active');
+insert into ota_rate_mappings values(131313131,1231232,'EP','19409464','',now(),now(),'active','','','','');
+insert into ota_rate_mappings values(131313131,1231231,'EP','19409464','',now(),now(),'active','','','','');
+insert into ota_rate_mappings values(131313132,1231231,'EP','19409464','',now(),now(),'active','','','','');
+\q
+select * from ota_hotel_mappings where cm_id = 5 order by created_at desc limit 1;
+update ota_hotel_mappings set status = 'inactive' where cm_id = 5 and id <> 12312412;
+commit;
+select * from ota_hotel_mappings where cm_id = 5 order by created_at desc limit 1;
+select * from ota_hotel_mappings where cm_id =5 and status = 'active';
+\q
+insert into cm_country_wise_cancellation_policies values(1,5,1,'{"percentagePenaltyAfterReservation":0,"deadlineInDays":0.0,"deadlineInHours":0,"percentagePenaltyAfterDeadline":0,"penaltyInNights":0,"noShowPolicy":"default"}',152,'default',now(),now());
+\q
+select * from ota_hotel_mappings where status = 'active';
+\q
+select * from process_execution_details;
+update \q
+select * from ota_hotel_mappings where hotel_id = 15972;
+select * from ota_room_mappings where ota_hotel_mapping_id = 12131212;
+\q
+select * from ota_room_mappings where ota_hotel_mapping_id = 12312412;
+\q
+\q
+select * from ota_room_mappings where ota_hotel_mapping_id = 12312412;
+update ota_room_mappings set room_category_code = '1' where id = 1231232;
+\q
+select * from ota_room_mappings where ota_hotel_mapping_id = 12312412;
+select * from ota_hotel_mappings where ota_hotel_id = '2892407';
+select * from ota_room_mappings where ota_hotel_mapping_id = 12312412;
+\q
+select * from process_execution_details;
+update process_execution_details set details ='{"nextPage":0,"currentSize":30}' where id = 2;
+update process_execution_details set details ='{"nextPage":1,"currentSize":30}' where id = 1;
+\q
+select * from expedia_room_category_mapping_details;
+\q
+\q
+\q
+\q
+select * from process_execution_details;
+\q
+select * from cm_image_tags_mapping;
+\q
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id = 1;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 1;
+update process_execution_details set details = '{"nextPage":1,"currentSize":30}' where id = 1;
+update process_execution_details set details = '{"nextPage":0,"currentSize":30}' where id = 2;
+\q
+select * from process_execution_details;
+\q
+select * from ota_hotel_mappings where ota_hotel_id = '23053948'
+;
+select * from ota_room_mappings where ota_hotel_mapping_id = 12131212;
+\q
+\q
+select * from ota_hotel_mappings where cm_id =5;
+update ota_hotel_mappings set status = 'inactive' where cm_id = 5;
+update ota_hotel_mappings set status = 'active' where id = 1919122;
+\q
+\d
+\q
+select * from ota_hotel_mappings where cm_id =5;
+update ota_hotel_mappings set status ='active' where id = 12312412;
+\q
+SELECT * FROM INFORMATION_SCHEMA.SEQUENCES
+;
+\x
+SELECT * FROM INFORMATION_SCHEMA.SEQUENCES
+;
+
+;
+\d
+\x
+SELECT * FROM INFORMATION_SCHEMA.SEQUENCES
+;
+\q
+select * from ota_hotel_mappings where cm_id =3;
+\q
+select * from process_execution_details;
+\q
+CREATE SEQUENCE rohan;
+select currval('rohan');
+select nextval('rohan');
+select nextval('rohan');
+select currval('rohan');
+\q
+CREATE SEQUENCE rohan_character 'A';
+select * from rohan;
+\q
+\c cmbro 
+select * from cm_booking_details;
+\c cmcms
+\d
+\c cmcms
+\l
+\c cm_cms
+\l
+sele
+select * from cm_client_hotel_details
+;
+select * from 
+;
+select * from hotel_meta_data
+;
+select count(*) from hotel_meta_data;
+\q
+drop sequence vendor_image_id
+;
+\q
+select * from ota_hotel_mappings where ota_id = 5;
+\q
+\q
+select * from process_execution_details;
+delete from process_execution_details where id = 3;
+select * from process_execution_details;
+delete from process_execution_details where id = 1;
+\q
+select * from process_execution_details;
+select * from ota_hotel_mappings;
+select * from ota_hotel_mappings where cm_id =5;
+update ota_hotel_mappings set status ='active' where ota_id = 5;
+\q
+\q
+select * from country_data;
+\q
+s
+;
+select * from ota_hotel_mappings where cm_id =5;
+select * from process_execution_details;
+update process_execution_details set details = '{"nextPage":1,"currentSize":1}' where id = 4;
+\q
+select
+        otahotelma0_.id as id1_50_0_,
+        otaroommap1_.id as id1_60_1_,
+        otahotelma0_.created_at as created_2_50_0_,
+        otahotelma0_.updated_at as updated_3_50_0_,
+        otahotelma0_.access_details as access_d4_50_0_,
+        otahotelma0_.cm_id as cm_id5_50_0_,
+        otahotelma0_.hotel_id as hotel_id6_50_0_,
+        otahotelma0_.ota_hotel_id as ota_hote7_50_0_,
+        otahotelma0_.ota_id as ota_id8_50_0_,
+        otahotelma0_.response as response9_50_0_,
+        otahotelma0_.status as status10_50_0_,
+        otaroommap1_.created_at as created_2_60_1_,
+        otaroommap1_.updated_at as updated_3_60_1_,
+        otaroommap1_.max_occupancy as max_occu4_60_1_,
+        otaroommap1_.ota_hotel_mapping_id as ota_hote5_60_1_,
+        otaroommap1_.ota_room_code as ota_room6_60_1_,
+        otaroommap1_.response as response7_60_1_,
+        otaroommap1_.room_category_code as room_cat8_60_1_,
+        otaroommap1_.room_count as room_cou9_60_1_,
+        otaroommap1_.status as status10_60_1_,
+        otaroommap1_.ota_hotel_mapping_id as ota_hote5_60_0__,
+        otaroommap1_.id as id1_60_0__ 
+    from
+        ota_hotel_mappings otahotelma0_ 
+    left outer join
+        ota_room_mappings otaroommap1_ 
+            on otahotelma0_.id=otaroommap1_.ota_hotel_mapping_id 
+    where
+        otahotelma0_.cm_id=? 
+        and otahotelma0_.status=? 
+    order by
+        otahotelma0_.id asc;
+ select
+        otahotelma0_.id as id1_50_0_,
+        otaroommap1_.id as id1_60_1_,
+        otahotelma0_.created_at as created_2_50_0_,
+        otahotelma0_.updated_at as updated_3_50_0_,
+        otahotelma0_.access_details as access_d4_50_0_,
+        otahotelma0_.cm_id as cm_id5_50_0_,
+        otahotelma0_.hotel_id as hotel_id6_50_0_,
+        otahotelma0_.ota_hotel_id as ota_hote7_50_0_,
+        otahotelma0_.ota_id as ota_id8_50_0_,
+        otahotelma0_.response as response9_50_0_,
+        otahotelma0_.status as status10_50_0_,
+        otaroommap1_.created_at as created_2_60_1_,
+        otaroommap1_.updated_at as updated_3_60_1_,
+        otaroommap1_.max_occupancy as max_occu4_60_1_,
+        otaroommap1_.ota_hotel_mapping_id as ota_hote5_60_1_,
+        otaroommap1_.ota_room_code as ota_room6_60_1_,
+        otaroommap1_.response as response7_60_1_,
+        otaroommap1_.room_category_code as room_cat8_60_1_,
+        otaroommap1_.room_count as room_cou9_60_1_,
+        otaroommap1_.status as status10_60_1_,
+        otaroommap1_.ota_hotel_mapping_id as ota_hote5_60_0__,
+        otaroommap1_.id as id1_60_0__ 
+    from
+        ota_hotel_mappings otahotelma0_ 
+    left outer join
+        ota_room_mappings otaroommap1_ 
+            on otahotelma0_.id=otaroommap1_.ota_hotel_mapping_id 
+    where
+        otahotelma0_.cm_id=5 
+        and otahotelma0_.status='active'
+    order by
+        otahotelma0_.id asc
+;
+\q
+select * from ota_hotel_mappings where cm_id =3;
+update ota_hotel_mappings set status = 'active' where cm_id = 3;
+\q
+\q
+select * from ota_hotel_mappings where cm_id =3;
+select count(*) from ota_room_mappings where ota_hotel_mapping_id = 191919;
+\q
+select * from ota_hotel_mappings where ota_id = 3;
+select * from hotel_photos_information limit 1 ;
+\q
+\d ota_booking_details
+\q
+select * from hotel_photos_information limit 1;
+\x
+select * from hotel_photos_information limit 1;
+select * from hotel_photos_information limit 1;
+\x
+select * from hotel_photos_information limit 1;
+\q
+\l
+\c cmari
+\d
+select * from availability_key_data limit 1;
+select * from availability_key_data order by id limit 1;
+select * from availability_key_data order by id desc limit 1;
+select * from availbility_sync_histories;
+\x
+select * from availbility_sync_histories;
+\q
+\d ota_booking_details
+\q
+\c pricso
+\q
+\d bulk_async_jobs
+\q
+\d hotel_photos_information
+\q
+select * from ota_onboarding_hotel_status limit 1;
+select * from ota_onboarding_hotel_status limit 10;
+\x
+select * from ota_onboarding_hotel_status limit 10;
+\q
+\d ota_booking_details;
+\q
+\c dt
+\l
+\c cmmappings 
+select * from cm_hotel_mappings limit 1;
+select * from cm_room_mappings where cm_hotel_mapping_id = 3;
+select * from cm_hotel_mappings where hotel_id = 'XX-5623-01';
+select * from cm_hotel_mappings ;
+\q
+\c cm_cms 
+\d cm_client_hotel_details;
+\q
+\du
+\q
+\du
+\l
+\q
+select * limit 1;
+\q
+\q
+\q
+select * from cm_client_hotel_details order by id desc limit 1;
+\q
+\q
+\d ota_meta_data
+\q
+\d booking_information
+\dt
+\q
+\c cm_cms
+select hotel_id from cm_client_hotel_details;
+\q
+select * from real_ota;
+\q
+\q
+\d rate_limits
+\q
+\c cmuser 
+\d
+\d user_details
+\q
+select * from ota_hotel_mappings where hotel_id =70 and cm_id = 5;
+select * from ota_hotel_mappings where hotel_id =70;
+select * from ota_hotel_mappings where cm_id =5;
+\q
+select hotel_id from cm_client_hotel_details;
+\q
+s
+\q
+\q
+s
+;
+select * from compset_otahoteldata where limit 1l
+s
+;;
+select * from compset_otahoteldata where limit 1;
+select * from compset_otahoteldata limit 1;
+\x
+select * from compset_otahoteldata limit 1;
+update compset_otahoteldata set hotel_url = '', ota_hotel_id='6140657291531950390';
+delete from compset_otahoteldata where id <> 472;
+select * from compset_otahoteldata limit 1;
+update compset_otahoteldata set amenities_updated_at = '2019-11-12 17:02:31'hotel_url = '', ota_hotel_id='6140657291531950390';
+update compset_otahoteldata set amenities_updated_at = '2019-11-12 17:02:31',hotel_url = '', ota_hotel_id='6140657291531950390';
+select * from compset_otahoteldata;
+\q
+select * from compset_otahoteldata;
+\x
+select * from compset_otahoteldata;
+\q
+\q
+select * from cm_client_hotel_details;
+\q
+\d cm_client_hotel_details;
+\q
+\d bulk_async_jobs
+\q
+\d ota_onboarding_hotel_status
+\q
+\d
+\l
+\q
+\d 
+\d schedulers_extranetscrapcandidates
+\d schedulers_slackchannels
+\q
+\t
+\d
+\q
+\d
+select * from client_data;
+\q
+\d
+create database phone_numbers;
+create user root with encrypted password 'root'
+;
+grant all privileges on database phone_numbers to root;
+\c phone_numbers 
+\l
+\t
+\t
+\x
+\x
+\dt
+\dt
+\dt
+\dt+
+\dt results 
+\d results
+\d tasks
+select * from tasks;
+\x
+select * from tasks;
+select * from tasks;
+select * from tasks;
+\q
+\q
+select * from tasks;
+\x
+select * from tasks;
+select * from tasks;
+\d tasks
+select * from tasks;
+
+drop table alembic_version 
+;
+drop table tasks ;
+drop table results ;
+drop table tasks ;
+\st
+\dt
+\d
+select * from tasks;
+\x
+\dt
+select * from tasks;
+\x
+select * from tasks;
+\s
+\s phhone_numbers
