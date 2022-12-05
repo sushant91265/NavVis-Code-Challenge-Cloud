@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+wheel
+fastapi-sqlalchemy
+pydantic
+alembic
+psycopg2-binary
+apscheduler
+alembic
+python-multipart
