@@ -17,9 +17,10 @@ def write_to_temp_file(file):
 
     return temp
 
+
 def get_uuid():
     return str(uuid.uuid1())
 
+
 def get_timestamp_ms():
     return int(datetime.datetime.now().timestamp())
-

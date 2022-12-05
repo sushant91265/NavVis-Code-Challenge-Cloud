@@ -25,9 +25,11 @@ class Result(Base):
     __tablename__ = "results"
     id = Column(Integer, primary_key=True, index=True)
     phone_number = Column(String, unique=True, index=True)
-    task_id = Column(String, ForeignKey("tasks.id"))
+    task_id = Column(Integer, ForeignKey("tasks.id"))
     time_created = Column(DateTime(timezone=True), server_default=func.now())
-    time_updated = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+    time_updated = Column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
+    )
 
     task = relationship("Task")
 

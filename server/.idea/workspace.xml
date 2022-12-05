@@ -2,25 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c9d1ed0-a53e-47fc-b2b4-89e23d268b55" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/NavVis-Code-Challenge-Cloud.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/server.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alembic.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/db/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/db/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/db/schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/jobs/worker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phhone_numbers" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phone_numbers_2.txt_1670110496_187d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phone_numbers_2.txt_1670111326_0743" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phone_numbers_2.txt_1670111351_1632" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phone_numbers_9.txt_1670107943_26de" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phone_numbers_9.txt_1670108074_7489" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/Dockerfile.app" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/db/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/db/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/db/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dto/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/dto/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/jobs/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/jobs/worker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/metadata_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/metadata_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/task_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/task_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phhone_numbers" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phone_numbers_2.txt_1670110496_187d" beforeDir="false" afterPath="$PROJECT_DIR$/phone_numbers_2.txt_1670115650_1895" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phone_numbers_2.txt_1670111326_0743" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phone_numbers_2.txt_1670111351_1632" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phone_numbers_9.txt_1670107943_26de" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phone_numbers_9.txt_1670108074_7489" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +60,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/web" />
       <recent name="$PROJECT_DIR$/app/async" />
     </key>
   </component>
@@ -77,7 +80,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -100,6 +103,7 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.ini" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.app" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -109,17 +113,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/jobs/worker.py</url>
-          <line>31</line>
+          <line>38</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/jobs/worker.py</url>
-          <line>30</line>
+          <line>37</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/jobs/worker.py</url>
-          <line>36</line>
+          <line>44</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>

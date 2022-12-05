@@ -1,5 +1,5 @@
 import app.dto.models
-from app.db.models import Task, Result
+from db.models import Task, Result
 from app.dto.models import TaskResult
 
 
@@ -18,6 +18,8 @@ class MetadataService:
         return self.db.session.query(Task).all()
 
     def get_results(self, task_id):
-        result = self.db.session.query(Result).join(Task).filter(Task.task_id == task_id)
-        arr = [TaskResult(row.phone_number) for row in result]
+        result = (
+            self.db.session.query(Result).join(Task).filter(Task.task_id == task_id)
+        )
+        arr = [row for row in result]
         return arr

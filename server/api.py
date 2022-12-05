@@ -1,11 +1,10 @@
 import uvicorn
 import os
 import time
-from pytz import utc
 
 from fastapi import FastAPI, UploadFile, File
 from fastapi_sqlalchemy import DBSessionMiddleware, db
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.background import BackgroundScheduler, BlockingScheduler
 
 from app.clients.object_storage.desktop import DesktopOS
 from app.services.object_storage_service import ObjectStorageService
@@ -15,11 +14,16 @@ from app.utils.util import write_to_temp_file
 
 from app.jobs.worker import process_tasks
 
+
 app = FastAPI()
-DATABASE_URI = 'postgresql://root:root@localhost/phone_numbers'
+USER = os.getenv("DB_USER", "root")
+PASS = os.getenv("DB_PASS", "root")
+HOST = os.getenv("DB_HOST", "localhost")
+NAME = os.getenv("DB_NAME","phone_numbers")
+DATABASE_URI = f"postgresql://{USER}:{PASS}@{HOST}/{NAME}"
 app.add_middleware(DBSessionMiddleware, db_url=DATABASE_URI)
 
-obj_service = ObjectStorageService(DesktopOS(os.getcwd()))
+obj_service = ObjectStorageService(DesktopOS(os.path.join(os.getcwd(), "buckets", "tasks")))
 md_service = MetadataService(db)
 task_service = TaskService(obj_service, md_service)
 
@@ -32,6 +36,11 @@ def ping():
 @app.get("/task/{task_id}/results")
 def get_results(task_id: str):
     return task_service.get_results(task_id)
+
+
+@app.get("/tasks")
+def get_results():
+    return task_service.list()
 
 
 @app.post("/upload")
@@ -49,18 +58,31 @@ def upload(file: UploadFile = File(...)):
 
 
 def create_scheduler():
-    background_scheduler = BackgroundScheduler(demon=True)
-    background_scheduler.configure(timezone=utc)
-    background_scheduler.add_job(process_tasks, kwargs={"db": db, "os": obj_service}, trigger='interval', seconds=5)
+    background_scheduler = BlockingScheduler()
+    # background_scheduler.configure()
+    background_scheduler.add_job(
+        process_tasks,
+        kwargs={"db": db, "object_storage_service": obj_service},
+        trigger="interval",
+        seconds=5,
+    )
     return background_scheduler
 
 
 if __name__ == "__main__":
-    if not os.getenv("ASYNC"):
-        uvicorn.run(app, host="0.0.0.0", port=8000)
-    else:
-        scheduler = create_scheduler()
-        scheduler.start()
-        uvicorn.run(app, host="0.0.0.0", port=8000)
-        scheduler.shutdown()
-
+    scheduler = None
+    try:
+        if os.getenv("ASYNC"):
+            print("STARTING SCHEDULER")
+            scheduler = create_scheduler()
+            scheduler.start()
+        else:
+            print("STARTING SERVER")
+            uvicorn.run(app, host="0.0.0.0", port=8000)
+     
+    except Exception as e:
+        print(e)
+        if scheduler:
+            scheduler.shutdown()
+    finally:
+        print("Shutting down")
