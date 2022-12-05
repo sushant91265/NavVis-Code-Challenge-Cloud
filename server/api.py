@@ -68,6 +68,11 @@ def create_scheduler():
     )
     return background_scheduler
 
+print("STARTING SCHEDULER")
+scheduler = create_scheduler()
+from threading import Thread
+thread = Thread(target=scheduler.start)
+thread.start()
 
 if __name__ == "__main__":
     scheduler = None
@@ -79,6 +84,7 @@ if __name__ == "__main__":
         else:
             print("STARTING SERVER")
             uvicorn.run(app, host="0.0.0.0", port=8000)
+
      
     except Exception as e:
         print(e)
