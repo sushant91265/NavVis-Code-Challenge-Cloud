@@ -17,24 +17,24 @@ services:
     volumes:
       - shared:/buckets/tasks
 
-  async:
-    build:
-      context: .
-      dockerfile: ./docker/app/Dockerfile
-    depends_on:
-      db:
-        condition: service_healthy
-    expose:
-      - 8000
-    environment:
-      DB_HOST: db
-      ASYNC: 1
-    links:
-      - db
-    volumes:
-      - type: volume
-        source: shared
-        target: /buckets/tasks
+  # async:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/app/Dockerfile
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   expose:
+  #     - 8000
+  #   environment:
+  #     DB_HOST: db
+  #     ASYNC: 1
+  #   links:
+  #     - db
+  #   volumes:
+  #     - type: volume
+  #       source: shared
+  #       target: /buckets/tasks
   
   db:
     build:
