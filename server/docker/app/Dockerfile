@@ -7,7 +7,7 @@ WORKDIR server
 RUN rm -r env
 RUN rm -r temp
 
-RUN mkdir -p buckets/tasks
+RUN mkdir -p downloads
 RUN chmod u+x docker/app/run.sh
 
 RUN python -m venv env

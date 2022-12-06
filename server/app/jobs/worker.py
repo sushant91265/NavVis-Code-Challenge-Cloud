@@ -11,6 +11,9 @@ def process_tasks(db, object_storage_service, threads=10):
             filename = task.filename
             print("processing file " + filename)
             lines = object_storage_service.get(filename)
+            if not lines:
+                continue
+        
             n = int(len(lines) / threads)
             chunks = [lines[i: i + n] for i in range(0, len(lines), n)]
 
@@ -28,6 +31,7 @@ def process_tasks(db, object_storage_service, threads=10):
 
         except Exception as e:
             print(e)
+
 
 def _tasks_to_process(db):
     with db():

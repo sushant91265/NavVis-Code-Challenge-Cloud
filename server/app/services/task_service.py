@@ -7,7 +7,6 @@ class TaskService:
         self.object_storage_service = object_storage_service
         self.metadata_service = metadata_service
 
-
     def create(self, file, name):
         task_id = get_uuid()
         file_name = name + "_" + str(get_timestamp_ms()) + "_" + task_id[:4]
@@ -27,16 +26,13 @@ class TaskService:
 
         return {"task": str(task)}
 
-
     def list(self):
         tasks = self.metadata_service.get_tasks()
         return TaskCollection(items=[str(task.task_id) for task in tasks])
 
-
     def get_results(self, task_id):
         results = self.metadata_service.get_results(task_id)
         return TaskResultCollection(items=[TaskResult(res.phone_number) for res in results])
-
 
     def delete(self, task_id):
         response = self.metadata_service.delete(task_id)
