@@ -4,9 +4,6 @@ RUN apk add --no-cache bash
 ADD . server
 WORKDIR server
 
-RUN rm -r env
-RUN rm -r temp
-
 RUN mkdir -p downloads
 RUN chmod u+x docker/app/run.sh
 
