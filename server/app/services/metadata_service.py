@@ -18,8 +18,10 @@ class MetadataService:
         return self.db.session.query(Task).all()
 
     def get_results(self, task_id):
+        print("getting results")
         result = (
             self.db.session.query(Result).join(Task).filter(Task.task_id == task_id)
         )
         arr = [row for row in result]
+        print(len(arr))
         return arr

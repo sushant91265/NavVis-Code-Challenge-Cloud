@@ -8,3 +8,5 @@ psycopg2-binary
 apscheduler
 alembic
 python-multipart
+bulkboto3
+minio
