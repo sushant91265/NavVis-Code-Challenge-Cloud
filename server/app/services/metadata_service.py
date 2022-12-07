@@ -25,3 +25,15 @@ class MetadataService:
         arr = [row for row in result]
         print(len(arr))
         return arr
+    
+    def delete(self, task_id):
+        print("Deleting results for task " + str(task_id))
+        with self.db.session.begin():
+            results = self.db.session.query(Task).filter(Task.task_id == task_id)
+            arr = [row for row in results]
+            if len(arr) == 1:
+                id = arr[0].id
+                print("Existing id of task " + str(id))
+                self.db.session.query(Result).filter(Result.task_id == str(id)).delete()
+                self.db.session.commit()
+        return {"status": "success"}
