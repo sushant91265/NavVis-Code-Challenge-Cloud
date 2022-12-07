@@ -49,7 +49,7 @@ def get_results(task_id: str):
 
 
 @app.get("/tasks")
-def get_results():
+def get_tasks():
     return task_service.list()
 
 
@@ -65,6 +65,11 @@ def upload(file: UploadFile = File(...)):
     finally:
         if temp:
             os.remove(temp.name)
+
+
+@app.delete("/tasks/{task_id}/results")
+def delete(task_id: str):
+    return task_service.delete_results(task_id)
 
 
 def create_scheduler():
