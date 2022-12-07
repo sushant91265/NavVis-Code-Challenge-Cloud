@@ -4,6 +4,6 @@ env
 */__pycache__/*
 */__pycache__
 */var/
-*.pyc
+*pyc
 */.idea/*
 .DS_Store

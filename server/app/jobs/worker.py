@@ -13,8 +13,7 @@ def process_tasks(db, object_storage_service, threads=10):
             lines = object_storage_service.get(filename)
             if not lines:
                 continue
-        
-            n = int(len(lines) / threads)
+            n = max(1,int(len(lines) / threads))    
             chunks = [lines[i: i + n] for i in range(0, len(lines), n)]
 
             valid_numbers = []
@@ -67,16 +66,19 @@ def _extract_numbers(lines):
     for line in lines:
         remaining = ""
         number = ""
+        prefix = ""
         if line.startswith("0049"):
             remaining = line[4:]
             number = "0049"
+            prefix = "0049"
         elif line.startswith("+49"):
             remaining = line[3:]
             number = "+49"
+            prefix = "+49"
         for r in remaining:
             if str(r).isdigit():
                 number = number + r
-                if len(number) == 15:
+                if len(number)-len(prefix) == 11:
                     res.append(number)
                     break
 
