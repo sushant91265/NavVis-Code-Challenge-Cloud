@@ -1,9 +1,10 @@
 import concurrent
+import os
 from concurrent.futures import ThreadPoolExecutor
 
 from db.models import Task, Result
 
-
+# TODO: parallel processing of files
 def process_tasks(db, object_storage_service, threads=10):
     tasks = _tasks_to_process(db)
     for task in tasks:
@@ -13,8 +14,9 @@ def process_tasks(db, object_storage_service, threads=10):
             lines = object_storage_service.get(filename)
             if not lines:
                 continue
-            n = max(1,int(len(lines) / threads))    
-            chunks = [lines[i: i + n] for i in range(0, len(lines), n)]
+            #e.g. 10 tasks and each task has 1000 lines, then 10 threads will process 100 lines(1 chunk) each
+            no_of_chunks = max(1,int(len(lines) / threads))    
+            chunks = [lines[i: i + no_of_chunks] for i in range(0, len(lines), no_of_chunks)]
 
             valid_numbers = []
             with ThreadPoolExecutor(max_workers=threads) as executor:
@@ -33,13 +35,12 @@ def process_tasks(db, object_storage_service, threads=10):
 
 
 def _tasks_to_process(db):
+    TASK_FETCH_LIMIT = os.getenv("TASK_FETCH_LIMIT", 10)
     with db():
         rows = db.session.query(Task).filter(
             Task.state == "ack" and Task.status == "active"
-        )
+        ).limit(TASK_FETCH_LIMIT)
         ids = [row.id for row in rows]
-        print("Picked up tasks " + str(len(ids)))
-
         table = Task.__table__
         query = (
             table.update()
@@ -54,8 +55,6 @@ def _tasks_to_process(db):
         ids = [row.id for row in rows]
         result = db.session.query(Task).filter(Task.id.in_(ids))
         tasks = [res for res in result]
-
-        print("Processing tasks " + str(len(tasks)))
         return tasks
 
     return []

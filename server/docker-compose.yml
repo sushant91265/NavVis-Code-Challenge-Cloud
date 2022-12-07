@@ -5,7 +5,7 @@ services:
     image: minio/minio
     ports:
       - "9000:9000"
-      - "9001:9001"
+      - "9001:9001" #admin
     volumes:
       - minio_storage:/data
     environment:

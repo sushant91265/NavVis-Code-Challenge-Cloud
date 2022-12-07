@@ -24,14 +24,13 @@ NAME = os.getenv("DB_NAME", "phone_numbers")
 DATABASE_URI = f"postgresql://{USER}:{PASS}@{HOST}/{NAME}"
 app.add_middleware(DBSessionMiddleware, db_url=DATABASE_URI)
 
-# obj_service = ObjectStorageService(DesktopOS(os.path.join(os.getcwd(), "buckets", "tasks")))
-
 ACCESS_KEY = os.getenv("access_key", "admins")
 ACCESS_SECRET = os.getenv("access_secret", "Strong#Pass#2022")
 BUCKET = os.getenv("bucket", "phonenumbers")
 ENDPOINT = os.getenv("ENDPOINT","localhost:9000")
 minio = MinIOStorage(ACCESS_KEY, ACCESS_SECRET, BUCKET, endpoint=ENDPOINT)
 
+SCHEDULER_TIME = os.getenv("SCHEDULER_TIME", 30)
 
 obj_service = ObjectStorageService(minio)
 md_service = MetadataService(db)
@@ -78,7 +77,7 @@ def create_scheduler():
         process_tasks,
         kwargs={"db": db, "object_storage_service": obj_service},
         trigger="interval",
-        seconds=5,
+        seconds=SCHEDULER_TIME,
     )
     return background_scheduler
 
@@ -92,7 +91,7 @@ if __name__ == "__main__":
         else:
             scheduler.start()
             while True:
-                time.sleep(5)
+                time.sleep(SCHEDULER_TIME)
     except Exception as e:
         print(e)
         if scheduler:
