@@ -4,7 +4,6 @@ from concurrent.futures import ThreadPoolExecutor
 
 from db.models import Task, Result
 
-# TODO: parallel processing of files
 def process_tasks(db, object_storage_service, threads=10):
     tasks = _tasks_to_process(db)
     for task in tasks:
@@ -59,7 +58,7 @@ def _tasks_to_process(db):
 
     return []
 
-
+#TODO: refactor
 def _extract_numbers(lines):
     res = []
     for line in lines:
