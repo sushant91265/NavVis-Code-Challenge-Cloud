@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from server.app.utils.util import Util
+from app.utils.util import Util
 
 class TestUtil(unittest.TestCase):
     def test_get_uuid(self):

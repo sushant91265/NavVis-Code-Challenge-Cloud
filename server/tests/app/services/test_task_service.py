@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from server.app.services.task_service import TaskService
+from app.services.task_service import TaskService
 from app.dto.models import Task, TaskCollection, TaskResultCollection
 
 class TestTaskService(unittest.TestCase):
