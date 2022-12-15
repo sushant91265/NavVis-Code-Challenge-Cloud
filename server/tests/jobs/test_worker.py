@@ -1,8 +1,6 @@
-import sys
 import unittest
 from unittest.mock import patch
-from server.db.models import Task, Result
-sys.path.append('.')
+from db.models import Task, Result
 
 from app.jobs import worker
 
