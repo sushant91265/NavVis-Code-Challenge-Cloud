@@ -10,7 +10,7 @@ def write_to_temp_file(tempFile):
         with temp as f:
             f.write(contents)
     except Exception as e:
-        print(e)
+        print("Exception:",e)
         return {"message": "There was an error uploading the file " + str(e)}
     finally:
         tempFile.file.close()

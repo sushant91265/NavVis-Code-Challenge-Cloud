@@ -1,5 +1,6 @@
 import unittest
-from app.utils import get_uuid, get_timestamp_ms, write_to_temp_file
+from tempfile import NamedTemporaryFile
+from app.utils.util import get_uuid, get_timestamp_ms, write_to_temp_file
 
 class TestUtil(unittest.TestCase):
     def test_get_uuid(self):
@@ -9,9 +10,22 @@ class TestUtil(unittest.TestCase):
     def test_get_timestamp_ms(self):
         timestamp = get_timestamp_ms()
         self.assertGreaterEqual(timestamp, 0)
-    
-    def test_write_to_temp_file(self):
-        tempFile = 'test'
-        temp = write_to_temp_file(tempFile)
-        self.assertEqual(temp, None)
 
+    def test_write_to_temp_file_exception_case(self):
+        tempFile = NamedTemporaryFile(delete=False)
+        tempFile.write(b'Hello World')
+        tempFile.close()
+        temp = write_to_temp_file(tempFile)
+        self.assertEqual(temp, {'message': 'There was an error uploading the file read of closed file'})
+
+    # check
+    def test_write_to_temp_file(self):
+        tempFile = NamedTemporaryFile(delete=False)
+        tempFile.write(b'Hello World')
+        temp = write_to_temp_file(tempFile)
+        self.assertEqual(temp.__sizeof__(), 32)
+        #self.assertEqual(temp.read(), b'Hello World')
+        tempFile.close()
+    
+if __name__ == '__main__':
+    unittest.main()

@@ -4,13 +4,18 @@ from app.services.task_service import TaskService
 from app.dto.models import Task, TaskCollection, TaskResultCollection
 
 class TestTaskService(unittest.TestCase):
+
+    def setUp(self):
+        self.object_storage_service = patch('app.services.object_storage_service.ObjectStorageService').start()
+        self.metadata_service = patch('app.services.metadata_service.MetadataService').start()
+
     @patch('app.services.object_storage_service.ObjectStorageService.put')
     @patch('app.services.metadata_service.MetadataService.save_task')
     def test_create(self, mock_put, mock_save_task):
         mock_put.return_value = {'status': 'success', 'path': '1234'}
         mock_save_task = {'status': 'success'}
         task_service = TaskService(None, None)
-        task = task_service.create(None, None)
+        task = task_service.create("None", "None")
         response = Task(task_id='1234', path='1234')
         self.assertEqual(task, response)
         mock_put.assert_called_once()
@@ -36,10 +41,10 @@ class TestTaskService(unittest.TestCase):
 
     @patch('app.services.metadata_service.MetadataService.delete')
     def test_delete_results(self, mock_delete):
-        mock_delete.return_value = ['1234']
-        task_service = TaskService(None, None)
-        results = task_service.delete_results(4)
-        self.assertEqual(results, 4)
+        mock_delete.return_value = {'status': 'success'}
+        task_service = TaskService(self.object_storage_service, self.metadata_service)
+        response = task_service.delete_results(4)
+        self.assertEqual(response, {'status': 'success'})
         mock_delete.assert_called_once()
 
 if __name__ == '__main__':

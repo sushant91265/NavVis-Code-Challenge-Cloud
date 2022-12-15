@@ -58,7 +58,6 @@ def _tasks_to_process(db):
 
     return []
 
-#TODO: refactor
 def _extract_numbers(lines):
     res = []
     for line in lines:
