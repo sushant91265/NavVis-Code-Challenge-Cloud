@@ -38,12 +38,14 @@
 - Please see the <table_name>_schema.png and Upload_Flow.png files in the resources directory of the project.
 
 
-## Debugging and Testing
+## Testing
 - The application is tested using pytest.
 - The tests are located in the tests directory of the project.
 - Run unit tests using `python3 -m unittest tests/jobs/test_worker.py` inside the server directory of the project.
 - Run integration tests using `sh integration_test.sh` inside the root directory of the project.(make sure you have `jq` intsalled on your machine.)
 
+
+## Troubleshooting
 - Using `docker exec -it <container_id> bash` you can get into the container and see the logs in the /var/log/nginx/error.log file and the application logs in the /app/app.log file.
 - Also, you can use `docker logs <container_id>` to see the logs.
 - Similarly enter into the database container and use `psql phone_numbers` to get into the database and use `select * from <table_name>;` to see the data in the database.

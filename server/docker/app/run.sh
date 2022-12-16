@@ -14,9 +14,6 @@ if [ "$ASYNC" != "1" ]; then
     cd ..
 fi
 
-pwd
-ls
-
 echo "RUN THE PYTHON FILE"
 python api.py
 

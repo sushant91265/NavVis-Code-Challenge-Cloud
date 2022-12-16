@@ -8,6 +8,7 @@ class MetadataService:
         self.db = db
 
     def save_task(self, task: app.dto.models.Task):
+        print("saving task")
         _task = Task(task_id=task.id, filename=task.filename)
         with self.db.session.begin():
             self.db.session.add(_task)
