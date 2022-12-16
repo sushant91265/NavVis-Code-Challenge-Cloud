@@ -11,6 +11,7 @@
 - Docker
 - Alembic
 - Unittest
+- Coverage
 
 
 ## How to run the application
@@ -43,8 +44,9 @@
 - Make sure to run `pip install -r req.txt` in the server directory of the project.
 - The application is tested using unittest.
 - The tests are located in the tests directory of the project.
-- Run unit tests using `python3 -m unittest tests/jobs/test_worker.py` inside the server directory of the project.
+- Run individual file unit tests using `python3 -m unittest tests/jobs/test_worker.py` or run all unit tests using `python3 -m unittest discover tests`, inside the server directory of the project.
 - Run integration tests using `sh integration_test.sh` inside the root directory of the project.(make sure you have `jq` intsalled on your machine.)
+- Coverage report can be generated using `coverage run -m unittest discover tests`, `coverage report` and `coverage html` inside the server directory of the project.
 
 
 ## Troubleshooting
@@ -53,3 +55,4 @@
 - Similarly enter into the database container and use `psql phone_numbers` to get into the database and use `select * from <table_name>;` to see the data in the database.
 - `\d <table_name>` to see the schema of the table.
 - If you try to run the application without using docker-compose, then alembic generation(under `db` directory) will be needed. Please refer to the alembic official documentation for more details. [https://alembic.sqlalchemy.org/en/latest/]
+- Delete `/var` directory in the root directory of the project if you want to start from scratch.

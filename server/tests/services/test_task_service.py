@@ -47,6 +47,11 @@ class TestTaskService(unittest.TestCase):
         response = task_service.create('test', 'test')
         self.assertEqual(response["task"], str(task))
 
+    def test_is_task_id_exists(self):
+        task_service = TaskService(None, MockMetadaService()) 
+        self.assertTrue(task_service.is_task_id_exists(4))
+
+
 
 class MockObjectStorageService:
     def put(self, file_name, file):
@@ -71,6 +76,9 @@ class MockMetadaService:
 
     def delete(self, task_id):
         return {"status": "success"}
+
+    def is_task_id_exists(self, task_id):
+        return True
 
 
 if __name__ == '__main__':

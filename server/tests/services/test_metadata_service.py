@@ -27,5 +27,10 @@ class TestMetadataService(unittest.TestCase):
         self.client.delete(self.key)
         mock_delete.assert_called_once_with(self.key)
 
+    @patch('app.services.metadata_service.MetadataService.is_task_id_exists')
+    def test_is_task_id_exists(self, mock_is_task_id_exists):
+        self.client.is_task_id_exists(self.key)
+        mock_is_task_id_exists.assert_called_once_with(self.key)
+
 if __name__ == '__main__':
     unittest.main()

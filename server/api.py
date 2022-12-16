@@ -3,7 +3,7 @@ import time
 import uvicorn
 import os
 
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Response, status
 from fastapi_sqlalchemy import DBSessionMiddleware, db
 from apscheduler.schedulers.background import BlockingScheduler
 
@@ -43,23 +43,31 @@ def ping():
 
 
 @app.get("/task/{task_id}/results")
-def get_results(task_id: str):
+def get_results(task_id: str, response: Response):
+    if not task_service.is_task_id_exists(task_id):
+        response.status_code = status.HTTP_204_NO_CONTENT
+        return None
     return task_service.get_results(task_id)
 
 
 @app.get("/tasks")
-def get_tasks():
-    return task_service.list()
+def get_tasks(response: Response):
+    task_list = task_service.list()
+    if task_list is None:
+        response.status_code = status.HTTP_204_NO_CONTENT
+        return None
+    return task_list
 
 
 @app.post("/upload")
-def upload(file: UploadFile = File(...)):
+def upload(response: Response, file: UploadFile = File(...)):
     temp = None
     try:
         temp = write_to_temp_file(file)
         response = task_service.create(temp, file.filename)
         return response
     except Exception as e:
+        response.status_code = status.HTTP_400_BAD_REQUEST
         return {"message": "There was an error processing the file " + str(e)}
     finally:
         if temp:
@@ -67,8 +75,11 @@ def upload(file: UploadFile = File(...)):
 
 
 @app.delete("/tasks/{task_id}/results")
-def delete(task_id: str):
-    return task_service.delete_results(task_id)
+def delete(task_id: str, response: Response):
+    del_response = task_service.delete_results(task_id)
+    if del_response.get('status') == "failure":
+        response.status_code = status.HTTP_404_NOT_FOUND
+    return response
 
 
 def create_scheduler():

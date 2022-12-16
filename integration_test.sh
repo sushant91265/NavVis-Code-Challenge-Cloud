@@ -10,7 +10,7 @@ printf "\n***********Running integration tests***********\n"
 PASS=0
 FAIL=0
 
-printf "\nhit the /ping endpoint and check the response to be pong\n"
+printf "\nhit the '/ping' endpoint and check the response to be pong\n"
 ping_output=$(curl -s http://localhost:8000/ping | jq -r '.message')
 if [ "$ping_output" != "pong" ]; then
     echo "Expected pong, got $ping_output, Test failed!"
@@ -20,7 +20,7 @@ else
     PASS=$((PASS+1))
 fi
 
-printf "\nhit the /upload endpoint and get the task id from the response\n"
+printf "\nhit the '/upload' endpoint and get the task id from the response\n"
 upload_output=$(curl -X 'POST' \
   'http://localhost:8000/upload' \
   -H 'accept: application/json' \
@@ -36,7 +36,7 @@ else
     FAIL=$((FAIL+1))
 fi
 
-printf "\nhit the /tasks endpoint to get the list of tasks\n"
+printf "\nhit the '/tasks' endpoint to get the list of tasks\n"
 tasks_output=$(curl -X 'GET' \
   'http://localhost:8000/tasks' \
   -H 'accept: application/json' | jq -r '.items')
@@ -49,7 +49,7 @@ else
     PASS=$((PASS+1))
 fi
 
-printf "\nhit the /tasks/{task_id} endpoint to get the task details\n"
+printf "\nhit the '/tasks/{task_id}' endpoint to get the task details\n"
 task_output=$(curl -X 'GET' \
   "http://localhost:8000/tasks/$task_id/results" \
   -H 'accept: application/json' | jq -r '.items.phone_number')
