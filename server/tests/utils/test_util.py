@@ -18,7 +18,6 @@ class TestUtil(unittest.TestCase):
         temp = write_to_temp_file(tempFile)
         self.assertEqual(temp, {'message': 'There was an error uploading the file read of closed file'})
 
-    # check
     def test_write_to_temp_file(self):
         tempFile = NamedTemporaryFile(delete=False)
         tempFile.write(b'Hello World')

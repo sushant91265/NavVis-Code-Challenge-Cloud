@@ -32,7 +32,9 @@ class TaskService:
 
     def get_results(self, task_id):
         results = self.metadata_service.get_results(task_id)
-        return TaskResultCollection(items=[TaskResult(res.phone_number) for res in results])
+        task_results = [TaskResult(phone_number=res) for res in results]
+        return TaskResultCollection(items=task_results)
+
 
     def delete_results(self, task_id):
         response = self.metadata_service.delete(task_id)

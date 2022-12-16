@@ -10,6 +10,7 @@
 - Nginx
 - Docker
 - Alembic
+- Unittest
 
 
 ## How to run the application
@@ -40,7 +41,9 @@
 ## Debugging and Testing
 - The application is tested using pytest.
 - The tests are located in the tests directory of the project.
-- The tests can be run using `pytest --cov=app --cov-report=html` command in the server directory of the project to get the coverage report in html format.
+- Run unit tests using `python3 -m unittest tests/jobs/test_worker.py` inside the server directory of the project.
+- Run integration tests using `sh integration_test.sh` inside the root directory of the project.(make sure you have `jq` intsalled on your machine.)
+
 - Using `docker exec -it <container_id> bash` you can get into the container and see the logs in the /var/log/nginx/error.log file and the application logs in the /app/app.log file.
 - Also, you can use `docker logs <container_id>` to see the logs.
 - Similarly enter into the database container and use `psql phone_numbers` to get into the database and use `select * from <table_name>;` to see the data in the database.
