@@ -4,7 +4,7 @@ source env/bin/activate
 echo ">>> Which Python"
 which python
 
-# TODO: why needed?
+
 echo $ASYNC
 if [ "$ASYNC" != "1" ]; then
     echo ">>> runnning db migrations"
