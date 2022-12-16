@@ -24,6 +24,7 @@
 - Deleteing results meaning deleting the phone numbers from the database not the taskId.
 - If the user queries before the whole file is processed, we return partial results.
 - Currently passwords are hardcoded in the docker-compose.yml file. In production, we should use secrets.
+- Even if there is space in phone number, we consider it as a valid phone number.
 
 
 ## Project Structure
@@ -39,7 +40,8 @@
 
 
 ## Testing
-- The application is tested using pytest.
+- Make sure to run `pip install -r req.txt` in the server directory of the project.
+- The application is tested using unittest.
 - The tests are located in the tests directory of the project.
 - Run unit tests using `python3 -m unittest tests/jobs/test_worker.py` inside the server directory of the project.
 - Run integration tests using `sh integration_test.sh` inside the root directory of the project.(make sure you have `jq` intsalled on your machine.)
