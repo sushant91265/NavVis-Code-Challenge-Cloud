@@ -1,10 +1,10 @@
 class Task:
-    def __init__(self, task_id, filename=None) -> None:
-        self.task_id = task_id
+    def __init__(self, id, filename=None) -> None:
+        self.id = id
         self.filename = filename
 
     def __str__(self):
-        return str(self.task_id)
+        return str(self.id)
 
 
 class TaskCollection:

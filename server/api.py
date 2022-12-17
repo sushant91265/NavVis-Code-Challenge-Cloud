@@ -64,8 +64,8 @@ def upload(response: Response, file: UploadFile = File(...)):
     temp = None
     try:
         temp = write_to_temp_file(file)
-        response = task_service.create(temp, file.filename)
-        return response
+        upload_response = task_service.create(temp, file.filename)
+        return upload_response
     except Exception as e:
         response.status_code = status.HTTP_400_BAD_REQUEST
         return {"message": "There was an error processing the file " + str(e)}
@@ -76,10 +76,12 @@ def upload(response: Response, file: UploadFile = File(...)):
 
 @app.delete("/tasks/{task_id}/results")
 def delete(task_id: str, response: Response):
+    # assumption: we are just deleting the results and not the task itself
     del_response = task_service.delete_results(task_id)
+    print("del_res=",del_response)
     if del_response.get('status') == "failure":
         response.status_code = status.HTTP_404_NOT_FOUND
-    return response
+    return del_response
 
 
 def create_scheduler():

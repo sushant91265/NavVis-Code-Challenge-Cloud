@@ -26,8 +26,8 @@ class TestTaskService(unittest.TestCase):
 
     def test_list(self):
         task_service = TaskService(None, MockMetadaService()) 
-        task = Task(task_id=1, filename='test')
-        taskCollection = TaskCollection(items=[str(task.task_id)])
+        task = Task(id=1, filename='test')
+        taskCollection = TaskCollection(items=[str(task.id)])
 
         tasks = task_service.list()
         self.assertEqual(len(tasks.items), len(taskCollection.items))
@@ -43,7 +43,7 @@ class TestTaskService(unittest.TestCase):
     def test_create(self, mock_get_uuid):
         mock_get_uuid.return_value = '1'
         task_service = TaskService(MockObjectStorageService(), MockMetadaService()) 
-        task = Task(task_id='1', filename='test')
+        task = Task(id='1', filename='test')
         response = task_service.create('test', 'test')
         self.assertEqual(response["task"], str(task))
 
@@ -69,7 +69,7 @@ class MockMetadaService:
         return ['1234']
 
     def get_tasks(self):
-        return [Task(task_id=1, filename='test')]
+        return [Task(id=1, filename='test')]
     
     def save_task(self, task):
         return {"status": "success", "task": task}

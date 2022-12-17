@@ -8,5 +8,4 @@ psycopg2-binary
 apscheduler
 python-multipart
 minio
-unittest
 coverage
