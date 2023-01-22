@@ -68,7 +68,8 @@ def upload(response: Response, file: UploadFile = File(...)):
         return upload_response
     except Exception as e:
         response.status_code = status.HTTP_400_BAD_REQUEST
-        return {"message": "There was an error processing the file " + str(e)}
+        print("There was an error processing the file " + str(e))
+        return {"message": "There was an error processing the file!"}
     finally:
         if temp:
             os.remove(temp.name)

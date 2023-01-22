@@ -28,7 +28,7 @@ class TaskService:
         tasks = self.metadata_service.get_tasks()
         if tasks is None or len(tasks) == 0:
             return None
-        return TaskCollection(items=[str(task.id) for task in tasks])
+        return TaskCollection(items=[str(task.task_id) for task in tasks])
 
     def get_results(self, task_id):
         results = self.metadata_service.get_results(task_id)

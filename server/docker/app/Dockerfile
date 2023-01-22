@@ -13,4 +13,3 @@ RUN env/bin/pip install -U pip
 RUN env/bin/pip install -r req.txt
 
 ENTRYPOINT ["/bin/bash", "-c", "./docker/app/run.sh"]
-CMD ["env/bin/python", "api.py"]
