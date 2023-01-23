@@ -3,18 +3,17 @@ import datetime
 from tempfile import NamedTemporaryFile
 
 
-def write_to_temp_file(file):
+def write_to_temp_file(tempFile):
     temp = NamedTemporaryFile(delete=False)
     try:
-        contents = file.file.read()
+        contents = tempFile.file.read()
         with temp as f:
             f.write(contents)
     except Exception as e:
-        print(e)
+        print("Exception:",e)
         return {"message": "There was an error uploading the file " + str(e)}
     finally:
-        file.file.close()
-
+        tempFile.file.close()
     return temp
 
 

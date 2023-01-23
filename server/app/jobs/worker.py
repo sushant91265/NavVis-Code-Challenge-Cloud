@@ -1,8 +1,8 @@
 import concurrent
+import os
 from concurrent.futures import ThreadPoolExecutor
 
 from db.models import Task, Result
-
 
 def process_tasks(db, object_storage_service, threads=10):
     tasks = _tasks_to_process(db)
@@ -11,8 +11,11 @@ def process_tasks(db, object_storage_service, threads=10):
             filename = task.filename
             print("processing file " + filename)
             lines = object_storage_service.get(filename)
-            n = int(len(lines) / threads)
-            chunks = [lines[i: i + n] for i in range(0, len(lines), n)]
+            if not lines:
+                continue
+            #e.g. 10 tasks and each task has 1000 lines, then 10 threads will process 100 lines(1 chunk) each
+            no_of_chunks = max(1,int(len(lines) / threads))    
+            chunks = [lines[i: i + no_of_chunks] for i in range(0, len(lines), no_of_chunks)]
 
             valid_numbers = []
             with ThreadPoolExecutor(max_workers=threads) as executor:
@@ -29,14 +32,14 @@ def process_tasks(db, object_storage_service, threads=10):
         except Exception as e:
             print(e)
 
+
 def _tasks_to_process(db):
+    TASK_FETCH_LIMIT = os.getenv("TASK_FETCH_LIMIT", 10)
     with db():
         rows = db.session.query(Task).filter(
             Task.state == "ack" and Task.status == "active"
-        )
+        ).limit(TASK_FETCH_LIMIT)
         ids = [row.id for row in rows]
-        print("Picked up tasks " + str(len(ids)))
-
         table = Task.__table__
         query = (
             table.update()
@@ -51,28 +54,28 @@ def _tasks_to_process(db):
         ids = [row.id for row in rows]
         result = db.session.query(Task).filter(Task.id.in_(ids))
         tasks = [res for res in result]
-
-        print("Processing tasks " + str(len(tasks)))
         return tasks
 
     return []
-
 
 def _extract_numbers(lines):
     res = []
     for line in lines:
         remaining = ""
         number = ""
+        prefix = ""
         if line.startswith("0049"):
             remaining = line[4:]
             number = "0049"
+            prefix = "0049"
         elif line.startswith("+49"):
             remaining = line[3:]
             number = "+49"
+            prefix = "+49"
         for r in remaining:
             if str(r).isdigit():
                 number = number + r
-                if len(number) == 15:
+                if len(number)-len(prefix) == 11:
                     res.append(number)
                     break
 

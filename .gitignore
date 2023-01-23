@@ -1,0 +1,9 @@
+*/env
+env
+*/temp/*
+*/__pycache__/*
+*/__pycache__
+*/var/
+*pyc
+*/.idea/*
+.DS_Store

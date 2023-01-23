@@ -6,5 +6,6 @@ pydantic
 alembic
 psycopg2-binary
 apscheduler
-alembic
 python-multipart
+minio
+coverage
