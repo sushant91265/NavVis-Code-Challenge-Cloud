@@ -31,7 +31,6 @@ class MetadataService:
         with self.db.session.begin():
             if not self.is_task_id_exists(task_id):
                 return {"status": "failure", "reason": "Task not found"}
-
             results = self.db.session.query(Task).filter(Task.task_id == task_id)
             print("Results: " + str(results))
             arr = [row for row in results]

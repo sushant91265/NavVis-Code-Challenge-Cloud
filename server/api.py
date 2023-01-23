@@ -104,8 +104,6 @@ if __name__ == "__main__":
             uvicorn.run(app, host="0.0.0.0", port=8000)
         else:
             scheduler.start()
-            while True:
-                time.sleep(SCHEDULER_TIME)
     except Exception as e:
         print(e)
         if scheduler:

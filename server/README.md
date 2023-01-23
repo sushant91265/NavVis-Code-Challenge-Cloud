@@ -3,15 +3,25 @@
 
 
 ## Tech Stack
-- Python
+- Python 3.9.0
 - FastAPI
-- PostgreSQL
-- Minio
+- PostgreSQL 11
+- Minio(object storage)
 - Nginx
 - Docker
-- Alembic
+- Alembic(for DB migration)
 - Unittest
 - Coverage
+
+
+## Classes
+- TaskService: Deals with Task related operations.
+- MetadataService: Abstraction layer for the database.
+- ObjectStorageService: Deals with minion related operations.
+- api: Contains the api endpoints.
+- worker: Fetches tasks from the database and processes them.
+- app/dto/models: Pojo classes.
+- db/model: Database models.
 
 
 ## How to run the application
