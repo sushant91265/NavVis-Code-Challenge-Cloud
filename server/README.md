@@ -17,7 +17,7 @@
 ## Classes
 - TaskService: Deals with Task related operations.
 - MetadataService: Abstraction layer for the database.
-- ObjectStorageService: Deals with minion related operations.
+- ObjectStorageService: Deals with minio related operations.
 - api: Contains the api endpoints.
 - worker: Fetches tasks from the database and processes them.
 - app/dto/models: Application models.
