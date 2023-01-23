@@ -20,7 +20,7 @@
 - ObjectStorageService: Deals with minion related operations.
 - api: Contains the api endpoints.
 - worker: Fetches tasks from the database and processes them.
-- app/dto/models: Pojo classes.
+- app/dto/models: Application models.
 - db/model: Database models.
 
 
